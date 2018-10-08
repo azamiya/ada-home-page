@@ -9,5 +9,36 @@
     </a-marker>
     <a-entity camera></a-entity>
     </a-scene>
+    <script>
+      console.log("hello script")
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("DOM fully loaded and parsed");
+        bodyEl = document.querySelector("body");
+
+        bodyEl.addEventListener("click", () => {
+          const video = document.querySelector('video')
+
+          console.log(video)
+          console.log("body clicked")
+
+          const imgEl = document.createElement('img');
+
+          let context;
+          const width = video.offsetWidth;
+          const height = video.offsetHeight;
+
+          let canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+
+          context = canvas.getContext('2d');
+          context.drawImage(video, 0, 0, width, height);
+
+          imgEl.src = canvas.toDataURL('image/png');
+          document.body.appendChild(imgEl);
+        })
+        
+      });
+    </script>
   </body>
 </html>
